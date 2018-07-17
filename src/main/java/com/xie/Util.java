@@ -7,6 +7,7 @@ public class Util {
 
     public void add(){
         int a=1;
+        int b=10;
 
     }
 
