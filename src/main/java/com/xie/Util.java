@@ -6,6 +6,7 @@ package com.xie;
 public class Util {
 
     public void add(){
+        int b=10;
 
     }
 
