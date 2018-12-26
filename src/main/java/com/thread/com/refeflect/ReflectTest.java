@@ -1,6 +1,7 @@
 package com.thread.com.refeflect;
 
 
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
@@ -101,5 +102,69 @@ public class ReflectTest {
 
     }
 
+    @Test
+    public void  test5(){
+        final  Student s = new Student();
+        s.setAge(89);
+        System.out.println(JSONObject.toJSONString(s));
+
+       // s = new Student();//会报错、final 变量不能直接被修改  ，但是可以通过 set 、get方法等修改
+
+
+    }
+
+
+    @Test
+    public void  test6() throws Exception {
+        //一些私有方法、私有的方法如何修改，常规的方法调用肯定不行、通过类的反射机制、修改访问权限
+        String s = "Hello World";
+        System.out.println("s = " + s); //Hello World
+
+        //获取String类中的value字段
+        Field valueFieldOfString = String.class.getDeclaredField("value");
+
+        //改变value属性的访问权限
+        valueFieldOfString.setAccessible(true);
+
+        //获取s对象上的value属性的值
+        char[] value = (char[]) valueFieldOfString.get(s);
+
+        //改变value所引用的数组中的第5个字符
+        value[5] = '_';
+        System.out.println("s = " + s);      //Hello_World
+    }
+
+
+    @Test
+    public void  test7() throws Exception {
+
+      /*  byte  a = 1;
+        byte  b = 3;
+        //byte  c = a+b; 		//直接加会出错，因为运算时Java虚拟机进行了转换，导致把一个int赋值给byte
+
+        final  byte  d = 1;
+        final  byte  e = 3;
+        byte f = d + e;		//加上final就不会出错。*/
+
+
+        /*char a= 'g';
+        int c = a;
+        System.out.println("c = " + c +"   a="+a);//c = 103   a=g*/
+
+        byte a=-128;//byte范围是 —128 到 +127  byte占一个字节 、8位，第一位代表的是正负
+        byte b=127;
+
+
+        int  c=20;
+        int  d =+c;
+        int  e =-c;
+        System.out.println("c = " + c +"   d="+d+"  e="+e);
+
+
+        double  f =1.2;
+        f=-f;
+
+
+    }
 
 }
