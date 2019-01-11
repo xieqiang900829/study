@@ -14,7 +14,7 @@ public class Student  {
 
     String  sex;
 
-    public Student(Integer  age, String name){
+    public Student(Integer  age, String name){//没有了无参构造函数
         System.out.println("带参数的构造方法");
         this.age = age;
         this.name = name ;
