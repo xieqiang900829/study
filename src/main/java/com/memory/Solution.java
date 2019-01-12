@@ -1,5 +1,9 @@
 package com.memory;
 
+import com.thread.com.refeflect.Student;
+
+import java.util.List;
+
 /**
  * Created by WD42700 on 2019/1/11.
  */
@@ -61,7 +65,16 @@ public class Solution {
 
         fun3(ss);
         System.out.println(ss.toString());//mainfun2
+
+        List<Student> list = findById(10, Student.class);
     }
 
 
+
+
+    public static  <T>   List<T>  findById(Integer   id,Class<T>  cls){
+
+        return null;
+
+    }
 }
