@@ -1,6 +1,6 @@
 package com.memory;
 
-import com.thread.com.refeflect.Student;
+import java.lang.String;
 
 /**
  * Created by WD42700 on 2019/1/14.
@@ -8,7 +8,7 @@ import com.thread.com.refeflect.Student;
 public class TestString {
 
     public static void main(String[] args) {
-        int  a= 10;
+      /*  int  a= 10;
         int  b= 10;
         Integer c= 10;
         Integer d= 10;
@@ -37,7 +37,7 @@ public class TestString {
 
         StringBuffer  sb1 = new StringBuffer("aaa");
         StringBuffer  sb2 = new StringBuffer("aaa");
-        System.out.println("StringBuffer =   "+ (sb1 == sb2));//false
+        System.out.println("StringBuffer =   "+ (sb1 == sb2));//false*/
 
     }
 

@@ -4,9 +4,8 @@ import org.junit.Test;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.List;
-import java.util.Map;
 
 
 public class TestJvmParam {

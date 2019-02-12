@@ -1,5 +1,7 @@
 package com.thread;
 
+import java.lang.String;
+
 /**
  * Created by WD42700 on 2018/7/17.
  */

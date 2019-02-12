@@ -2,6 +2,8 @@ package com.thread;
 
 import com.bean.PersonBase;
 
+import java.lang.String;
+
 
 /**
  * Created by WD42700 on 2019/1/6.

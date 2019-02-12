@@ -1,5 +1,6 @@
 package com.classloader;
 
+import java.lang.String;
 import java.util.ServiceLoader;
 
 /**
@@ -24,6 +25,7 @@ public class TestServiceLoader {
          * 会到META-INF/services的配置文件中寻找这个接口对应的实现类全路径名，然后使用反射去生成一个无参的实例(反射也可以实现有参数的实例)。
          *
          * 主要的使用场景是和第三方库解耦，解依赖。比如模块化的时候。比如接触第三方库依赖的时候 比如接触第三方库依赖的时候,例如mysql
+         * 一个接口是一个ServiceLoader、
          *
          *
          */
