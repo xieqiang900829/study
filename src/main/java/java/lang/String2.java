@@ -3,7 +3,7 @@ package java.lang;
 /**
  * Created by WD42700 on 2018/12/14.
  */
-public class String {
+public class String2 {
 
     /**
      *
@@ -21,7 +21,7 @@ public class String {
      * 编译不会报错、但是永远不会被加载和运行
      *
      */
-    public String(){
+    public String2(){
 
         System.out.println("我是本地的String");
 

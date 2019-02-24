@@ -13,16 +13,20 @@ public class TestThreadState {
     }
 
     public static void main(String[] args) {
-        System.out.println(TestThreadState.pid());
-        runnable();     // 1
+        System.out.println("进程id: "+TestThreadState.pid());
+        //runnable();     // 1
         //     blocked();      // 2
-        //     waiting();      // 3
+             waiting();      // 3
         //     timedWaiting(); // 4
     }
 
 
     public static void runnable() {
         long i = 0;
+        Long id = Thread.currentThread().getId();
+        Integer temp = id.intValue();
+        String threadId = Integer.toHexString(temp);
+        System.out.println("线程id   16进制："+threadId+"   10进制："+id);
         while (true) {
             i++;
         }
@@ -67,6 +71,7 @@ public class TestThreadState {
         synchronized (lock) {
             try {
                 lock.wait();
+                //使用jstack 加载类的情况、各个内存区域的情况、堆区、方法区的情况。JVM编译方法统计、总结垃圾回收统计、
             } catch (InterruptedException e) {
             }
         }
