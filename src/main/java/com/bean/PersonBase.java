@@ -12,4 +12,7 @@ public class PersonBase {
     private  int  age =0  ;
 
     private String name ;
+
+    private  Boolean sex;
+
 }
