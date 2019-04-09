@@ -30,7 +30,7 @@ public class TestMq {
         String[] tags = new String[] { "TagA", "TagC", "TagD" };
 
         Date date = new Date();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             // 加个时间后缀
             String body = String.valueOf(i*1000) ;
             Message msg = new Message("mq_order", null, "KEY" + i, body.getBytes());
@@ -43,7 +43,7 @@ public class TestMq {
                     long index = id % mqs.size();
                     return mqs.get((int)index);
                 }
-            }, 3L);//订单id
+            }, Long.valueOf(i));//订单id
 
             System.out.println(sendResult + ", body:" + body);
         }
