@@ -44,9 +44,7 @@ public class UseThreadLocal3 {
         executor.shutdown();
         executor.shutdownNow();
 
-
         executor.getTaskCount();
-
     }
 
 
