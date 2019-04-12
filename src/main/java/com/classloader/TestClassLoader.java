@@ -25,9 +25,14 @@ public class TestClassLoader {
         //Bootstrap Loader是用C++语言写的，依java的观点来看，逻辑上并不存在Bootstrap Loader的类实体，
         // 所以在java程序代码里试图打印出其内容时，我们就会看到输出为null。
         System.out.println(java.util.List.class.getClassLoader()); //jdk自带的类都是由 根加载器加载的 。。
-        System.out.println(java.lang.Object.class.getClassLoader());//null
+        System.out.println(java.lang.Object.class.getClassLoader());//null  BootstrapClassLoader输出就是null
 
-        System.out.println(java.util.List.class.getClassLoader());
+        System.out.println(java.util.List.class.getClassLoader());//null
+
+        TestClassLoader.class.getClassLoader().getResource("/");
+
+
+
 
     }
 }

@@ -17,10 +17,32 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+          <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!--是否需要添加 classpath。锁依赖的jar  如果对字节码的处理有应用到了其他的类，需要在manifest中增加路径-->
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.proxy.Main</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Premain-Class>com.javaagent.PreMainTraceAgent</Premain-Class>
+                            <!--<Agent-Class>org.skfiy.typhon.agent.Agent</Agent-Class>-->
+                            <Can-Redefine-Classes>true</Can-Redefine-Classes>
+                            <Can-Retransform-Classes>true</Can-Retransform-Classes>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+
+
         </plugins>
     </build>
     <dependencies>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -55,9 +77,6 @@
             <artifactId>rocketmq-client</artifactId>
             <version>3.5.9</version>
         </dependency>
-
-
-
     </dependencies>
 
 
