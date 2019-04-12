@@ -10,6 +10,11 @@ import java.security.ProtectionDomain;
  */
 public class PreMainTraceAgent {
 
+    /**
+     * 该方法在main方法之前运行，与main方法运行在同一个JVM中
+     * 并被同一个System ClassLoader装载
+     * 被统一的安全策略(security policy)和上下文(context)管理
+     */
     public static void premain(String agentArgs, Instrumentation inst) {
 
         System.out.println("PreMainTraceAgent____________agentArgs : " + agentArgs);
@@ -18,14 +23,18 @@ public class PreMainTraceAgent {
             public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                                     ProtectionDomain protectionDomain, byte[] classfileBuffer)
                     throws IllegalClassFormatException {
-                System.out.println("premain load Class     :" + className);
-                return classfileBuffer;
+
+               if(className.equals("com.classloader.MyClassLoader")){
+                    System.out.println("my  name is MyClassLoader:" + className);
+                }
+
+                //每个类的加载都会调用这个方法 、可以在这里做字节码增强处理、判断
+                System.out.println("类加载器loader     :" + loader.toString());
+                System.out.println("premain load Class :" + className);
+                return classfileBuffer;//直接将字节码原样返回 不做任何修改。。
             }
         }, true);
 
-        //java  -javaagent:G:\myagent.jar=Hello2 -javaagent:G:\myagent.jar=Hello3 -jar myapp.jar
-        //java -javaagent:study-1.0-SNAPSHOT.jar=Hello1 -javaagent:study-1.0-SNAPSHOT.jar=Hello2 -jar myapp.jar
-        //java  -javaagent:study-1.0-SNAPSHOT.jar=Hello1 -jar  study-1.0-SNAPSHOT.jar
     }
 
 }
