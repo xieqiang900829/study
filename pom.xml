@@ -77,6 +77,13 @@
             <artifactId>rocketmq-client</artifactId>
             <version>3.5.9</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.18.2-GA</version>
+        </dependency>
+
     </dependencies>
 
 

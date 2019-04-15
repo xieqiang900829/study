@@ -26,5 +26,6 @@
     <orderEntry type="library" name="Maven: com.google.j2objc:j2objc-annotations:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.14" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba.rocketmq:rocketmq-client:3.5.9" level="project" />
+    <orderEntry type="library" name="Maven: org.javassist:javassist:3.18.2-GA" level="project" />
   </component>
 </module>
