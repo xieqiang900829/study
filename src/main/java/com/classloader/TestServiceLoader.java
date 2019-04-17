@@ -8,7 +8,7 @@ import java.util.ServiceLoader;
  */
 public class TestServiceLoader {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         /**
          *
@@ -30,16 +30,30 @@ public class TestServiceLoader {
          *
          */
 
-        ServiceLoader<Compute>  sl = ServiceLoader.load(Compute.class);
+        /*ServiceLoader<Compute>  sl = ServiceLoader.load(Compute.class);
         for (Compute service : sl) {
             System.out.println(service.getClass());
             Integer i = service.add(123);
             System.out.println(i);
             //
-        }
+        }*/
+
+        ClassLoader  loader1 = ClassLoader.getSystemClassLoader();
+        Class c1 = loader1.loadClass("com.classloader.ClassLoaderTree");
+
+        MyClassLoader2 loader2 =new MyClassLoader2();
 
 
+        System.out.println(MyClassLoader2.class.getClassLoader());
 
+        MyClassLoader2 ld2 = (MyClassLoader2) loader2.loadClass("com.classloader.ClassLoaderTree").newInstance();
+
+      /*  MyClassLoader2 loader3 =new MyClassLoader2();
+        Class c3 = loader2.loadClass("com.classloader.ClassLoaderTree");
+
+
+        System.out.println(loader1 == loader2);
+        System.out.println(c3 == c2);*/
     }
 
 }
