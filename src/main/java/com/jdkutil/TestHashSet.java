@@ -1,0 +1,17 @@
+package com.jdkutil;
+
+import java.util.HashSet;
+import java.util.TreeSet;
+
+/**
+ * Created by WD42700 on 2019/3/28.
+ */
+public class TestHashSet {
+    public static void main(String[] args) {
+        HashSet s = new  HashSet<>  ();
+        TreeSet a = new TreeSet<>();
+        a.add( new Object());
+    }
+
+}
+
