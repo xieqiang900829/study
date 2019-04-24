@@ -16,7 +16,7 @@ public class RpcNioConsumer {
      * @param
      * @return void
      * @createTime：2018/7/1
-     * @author: shakeli
+     * @author: xieqiang
      */
     public static void multipartRpcNio() {
         HelloService proxy = RpcProxyFactory.getMultService(HelloService.class);

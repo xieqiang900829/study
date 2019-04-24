@@ -12,9 +12,10 @@ public class RpcProxyFactory {
      * @param interfaceClass
      * @return T
      * @createTime：2018/7/1
-     * @author: shakeli
+     * @author: xieqiang
      */
     public static <T> T getMultService(Class<T> interfaceClass) {
+        //Proxy.newProxyInstance 代理多个对象
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[] { interfaceClass },
                 new RpcNIoMultHandler());
     }
