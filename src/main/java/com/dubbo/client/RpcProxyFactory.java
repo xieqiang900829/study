@@ -15,7 +15,7 @@ public class RpcProxyFactory {
      * @author: xieqiang
      */
     public static <T> T getMultService(Class<T> interfaceClass) {
-        //Proxy.newProxyInstance 代理多个对象
+        //Proxy.newProxyInstance 可以同时代理多个对象
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[] { interfaceClass },
                 new RpcNIoMultHandler());
     }
