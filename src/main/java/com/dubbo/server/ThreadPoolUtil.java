@@ -10,6 +10,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolUtil {
 
+    /**
+     * 业务线程池,单例模式
+     */
     private static volatile ThreadPoolExecutor executor;
 
     public static void init() {

@@ -76,7 +76,7 @@ public class RpcNioMultServer {
                         SocketChannel channel = (SocketChannel) key.channel();
                         byte[] bytes = readMsgFromClient(channel);
                         if (bytes != null && bytes.length > 0) {
-                            // 读取之后将任务放入线程池异步返回
+                            // 读取之后将任务放入线程池然后异步返回
                             RpcNioMultServerTask task = new RpcNioMultServerTask(bytes, channel);
                             ThreadPoolUtil.addTask(task);
                         }
@@ -92,12 +92,13 @@ public class RpcNioMultServer {
     public byte[] readMsgFromClient(SocketChannel channel) {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
         try {
+            //客户端放入数据的顺序：消息体长度、消息体
             // 首先读取消息头（自己设计的协议头，此处是消息体的长度）
             int headCount = channel.read(byteBuffer);
             if (headCount < 0) {
                 return null;
             }
-            byteBuffer.flip();
+            byteBuffer.flip();//重头开始读
             int length = byteBuffer.getInt();
             // 读取消息体
             byteBuffer = ByteBuffer.allocate(length);
