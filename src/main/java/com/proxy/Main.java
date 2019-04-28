@@ -37,6 +37,16 @@ public class Main {
         });
         writeInterface.isWrite();
         writeInterface.read();
+
+        /**
+         * 返回类自己继承的接口WriteParentInterface,WriteParentInterface2
+         * 如果没有继承接口 返回的是空数组、长度为0。例如没继承接口的接口或者实现类
+         * 只返回直接继承的、不包括父接口继承的
+         */
+        Class<?>[]  arr = WriteInterface.class.getInterfaces();
+        Class<?>[]  arr2 = WriteParentInterface2.class.getInterfaces();
+        Class<?>[]  arr3 = Main.class.getInterfaces();
+        Class<?>[]  arr4 = WriteImpl.class.getInterfaces();
     }
 
 }
