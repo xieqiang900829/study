@@ -55,7 +55,7 @@ public class RpcNioMultServer {
                 // 当注册的事件到达时，方法返回；否则,该方法会一直阻塞
                 selector.select();
                 // 获得selector中选中的项的迭代器，选中的项为注册的事件
-                Iterator ite = selector.selectedKeys().iterator();
+                Iterator ite = selector.selectedKeys().iterator();//可能会有多个请求同时到达
                 while (ite.hasNext()) {
                     SelectionKey key = (SelectionKey) ite.next();
                     // 删除已选的key,以防重复处理
@@ -92,6 +92,9 @@ public class RpcNioMultServer {
     public byte[] readMsgFromClient(SocketChannel channel) {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
         try {
+
+            //客户端 放入消息长度，然后放入消息体
+
             // 首先读取消息头（自己设计的协议头，此处是消息体的长度）
             int headCount = channel.read(byteBuffer);
             if (headCount < 0) {
