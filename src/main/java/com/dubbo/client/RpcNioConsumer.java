@@ -21,7 +21,6 @@ public class RpcNioConsumer {
     public static void multipartRpcNio() {
         HelloService proxy = RpcProxyFactory.getMultService(HelloService.class);
         for (int i = 0; i < 100; i++) {
-            final int j = i;
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {

@@ -5,6 +5,8 @@ package com.proxy;
  */
 public interface HelloWorldInteface {
 
-    public void sayHello();
+    public void sayHelloWorld();
+
+    public void write();
 
 }

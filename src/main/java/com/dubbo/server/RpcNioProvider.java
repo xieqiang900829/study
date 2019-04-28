@@ -14,11 +14,21 @@ public class RpcNioProvider {
     }
 
     public static void startMultRpcNioServer() {
-        Runnable r = () -> {
+       /* Runnable r = () -> {
             try {
                 RpcNioMultServer.start();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        };*/
+        Runnable r= new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    RpcNioMultServer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         };
         Thread t = new Thread(r);

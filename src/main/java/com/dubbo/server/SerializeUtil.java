@@ -16,8 +16,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * @author: lifs
- * @create: 2018-06-27 22:03
+ *
+ * @author: xieqiang
+ * @create: 2019/4/24 22:03
  **/
 public class SerializeUtil {
 

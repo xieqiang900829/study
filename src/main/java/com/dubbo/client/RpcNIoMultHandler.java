@@ -33,6 +33,7 @@ public class RpcNIoMultHandler implements InvocationHandler {
         if (requstBytes != null) {
             RpcContainer.removeResponseAndFuture(responseId);
         }
+        //method.invoke(ldh, args); 代理本地对象  1、对象 2、参数   3、返回值是目标方法的返回值
 
         // 反序列化获得结果
         Object result = SerializeUtil.unSerialize(responseBytes);

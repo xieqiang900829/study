@@ -5,7 +5,12 @@ package com.proxy;
  */
 
 public class HelloWorldImpl implements HelloWorldInteface{
-    public void sayHello() {
+    public void sayHelloWorld() {
         System.out.println("hello world");
+    }
+
+    @Override
+    public void write() {
+
     }
 }
