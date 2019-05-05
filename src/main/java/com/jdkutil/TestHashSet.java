@@ -1,5 +1,7 @@
 package com.jdkutil;
 
+import com.bean.Person;
+
 import java.util.HashSet;
 import java.util.TreeSet;
 
@@ -8,9 +10,15 @@ import java.util.TreeSet;
  */
 public class TestHashSet {
     public static void main(String[] args) {
-        HashSet s = new  HashSet<>  ();
-        TreeSet a = new TreeSet<>();
-        a.add( new Object());
+        HashSet<Person> s = new  HashSet<>  ();
+       // TreeSet a = new TreeSet<>();
+
+        s.add(new Person(15,"zhangsan"));
+        s.add(new Person(15,"zhangsan343"));
+
+
+
+
     }
 
 }

@@ -29,7 +29,7 @@ public class PreMainTraceAgent {
                 }
 
                 //每个类的加载都会调用这个方法 、可以在这里做字节码增强处理、判断
-                System.out.println("类加载器loader     :" + loader.toString());
+                System.out.println(className+"__"+className+"   class_loader     :" + loader.toString());
                 System.out.println("premain load Class :" + className);
                 return classfileBuffer;//直接将字节码原样返回 不做任何修改。。
             }
