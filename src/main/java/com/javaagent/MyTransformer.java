@@ -15,7 +15,7 @@ import javassist.*;
  * Created by WD42700 on 2019/4/12.
  */
 public class MyTransformer implements ClassFileTransformer {
-    final static String prefix = "\nlong startTime = System.currentTimeMillis();\n";
+    final static String prefix = "\nlong startTime = System.();\n";
     final static String postfix = "\nlong endTime = System.currentTimeMillis();\n";
 
     // 被处理的方法列表
@@ -41,7 +41,7 @@ public class MyTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
         className = className.replace("/", ".");
-        if (methodMap.containsKey(className)) {// 判断加载的class的包路径是不是需要监控的类
+        if (methodMap.containsKey(className)) {//判断加载的class的包路径是不是需要监控的类
             CtClass ctclass = null;
             try {
                 ctclass = ClassPool.getDefault().get(className);// 使用全称,用于取得字节码类<使用javassist>

@@ -24,14 +24,11 @@ public class PreMainTraceAgent {
                                     ProtectionDomain protectionDomain, byte[] classfileBuffer)
                     throws IllegalClassFormatException {
 
-               if(className.equals("com.classloader.MyClassLoader")){
-                    System.out.println("my  name is MyClassLoader:" + className);
-                }
 
-                //每个类的加载都会调用这个方法 、可以在这里做字节码增强处理、判断
-                System.out.println("类加载器loader     :" + loader.toString());
-                System.out.println("premain load Class :" + className);
-                return classfileBuffer;//直接将字节码原样返回 不做任何修改。。
+                //每个类的加载都会调用这个法 、可以在这里做字节码增强处理、判断
+                //为什么加载的全是com.proxy目录下的类
+                System.out.println("premain load Class________    " + className);
+                return classfileBuffer;//直接将字节码原样返回 不做任何修改。。如何修改成自己需要的字节码
             }
         }, true);
 
