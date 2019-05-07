@@ -12,7 +12,7 @@ public class LogProxy implements InvocationHandler {
     private Object object;
 
     public Object getProxyObject(Object o){
-        object=o;
+        this.object=o;
         try{
             return Proxy.newProxyInstance(this.getClass().getClassLoader(),o.getClass().getInterfaces(),this);
         }catch (IllegalArgumentException e){
