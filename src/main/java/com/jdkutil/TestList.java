@@ -41,7 +41,7 @@ public class TestList {
      *
      * Lists.newArrayList() 为什么会调用 itr.remove() 。？？？？暂时不用纠结这个
      *
-     *
+     *list或者hashmap遍历 都有这个问题 ？？？
      *
      */
 
