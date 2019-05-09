@@ -40,9 +40,6 @@
                     </archive>
                 </configuration>
             </plugin>
-
-
-
         </plugins>
     </build>
     <dependencies>
@@ -93,12 +90,17 @@
             <version>2.5.5</version>
         </dependency>
 
-        <!--在公司可以引入-->
-       <!-- <dependency>
+        <!--在公司是否可以引入、家里的网络不行-->
+       <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+       <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>2.2.2</version>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
 
