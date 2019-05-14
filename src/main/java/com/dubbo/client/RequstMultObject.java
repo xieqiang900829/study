@@ -31,7 +31,7 @@ public class RequstMultObject implements Serializable {
         this.args = args;
     }
 
-    public Long getRequestId() {
+    public Long RequestId() {
         return requestId;
     }
 
