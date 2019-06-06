@@ -13,9 +13,9 @@ public class TestLock {
     @Test
     public void  testLock() throws Exception {
         RedissonClient client = Redisson.create();
-       //RLock lock = client.getLock("abcdefg");
-        RLock lock = client.getFairLock("abcdefg");
-       for (int  i=0;i<=50;i++){
+       RLock lock = client.getLock("lock1");
+       //RLock lock = client.getFairLock("lock1");
+       for (int  i=0;i<=0;i++){
            TimeUnit.SECONDS.sleep(1);
            final int j = i;
            new  Thread(new Runnable() {
@@ -33,7 +33,7 @@ public class TestLock {
                 }
             }).start();
         }
-        Thread.currentThread().join(1000000);
+        Thread.currentThread().join(10000000);
         System.err.println("-------------全部結束------------------");
         client.shutdown();
     }
