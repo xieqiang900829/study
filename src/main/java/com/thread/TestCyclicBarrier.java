@@ -14,13 +14,23 @@ public class TestCyclicBarrier {
 
 
     /**
-     * 回环栅栏 可以循环利用
+     * 回环栅栏  (循环栅栏)     回环：可以循环利用，栅栏：等待后续线程完成之后一起继续往下走
      * @param args
      * @throws InterruptedException
      */
     public static void main(String[] args) throws InterruptedException {
         int N = 4;
-        CyclicBarrier barrier = new CyclicBarrier(N);
+        CyclicBarrier barrier = new CyclicBarrier(N, new Runnable() {
+            @Override
+            public void run() {
+                System.err.println(TimeUtil.time()+" 线程" + Thread.currentThread().getName() + "大家都作做完了手上工作。。一起往下走。。。。。。。。。。。。。。。。。");
+                try {
+                    TimeUnit.SECONDS.sleep(5);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         int j = 1;
         while (j<=3){
