@@ -19,7 +19,8 @@ public class SampleClass {
             @Override
             public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
                 System.out.println("before method run...");
-                Object result = proxy.invokeSuper(obj, args);
+               Object result = proxy.invokeSuper(obj, args);
+                //Object result = proxy.invoke(obj, args);
                 System.out.println("after method run...");
                 return result;
             }

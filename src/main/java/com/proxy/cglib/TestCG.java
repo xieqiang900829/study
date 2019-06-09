@@ -1,8 +1,9 @@
 package com.proxy.cglib;
 
+import net.sf.cglib.proxy.*;
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.cglib.proxy.*;
+
 
 import java.lang.reflect.Method;
 

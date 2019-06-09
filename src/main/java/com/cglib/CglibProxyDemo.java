@@ -26,10 +26,13 @@ public class CglibProxyDemo implements MethodInterceptor {
 
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+        //HelloImpl$$EnhancerByCGLIB$$1dd4a564 extends HelloImpl implements Factory
+        System.err.println(o.getClass());//这个是动态生成的代理类，不是目标类。所以不能method.invoke()
+
         // 开启事务
         trancation.beginTrancation();
         // 方法调用，注！！！此处传入的Object为代理，而不是目标类，目标类需要另外注入
-        Object obj = method.invoke(target, objects);
+        Object obj = method.invoke(target, objects);//或者methodProxy.invokeSuper(o, objects);
         // 提交事务
         trancation.commit();
         return obj;
@@ -72,8 +75,8 @@ class Client {
         HelloImpl p = new HelloImpl();
         CglibProxyDemo cglibProxy = new CglibProxyDemo(t,p);
         HelloImpl helloImpl = (HelloImpl) cglibProxy.createProxy();
-        helloImpl.sayHello();
-        helloImpl.write("谢强");
+        /*helloImpl.sayHello();
+        helloImpl.write("谢强");*/
     }
 }
 

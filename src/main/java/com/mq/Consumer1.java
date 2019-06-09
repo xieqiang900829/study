@@ -6,6 +6,7 @@ import com.alibaba.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
 import com.alibaba.rocketmq.client.consumer.listener.MessageListenerOrderly;
 import com.alibaba.rocketmq.common.consumer.ConsumeFromWhere;
 import com.alibaba.rocketmq.common.message.MessageExt;
+import com.util.TimeUtil;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -48,7 +49,8 @@ public class Consumer1 {
                     System.out.println(Thread.currentThread().getName()+" 内容：" + msg);
                     System.out.println(Thread.currentThread().getName()+" 消息体：" + s);
                     if (s.equals("3000")){
-                      //  return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
+                        System.err.println(TimeUtil.time());
+                      //return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
                     }
                 }
                 try {
