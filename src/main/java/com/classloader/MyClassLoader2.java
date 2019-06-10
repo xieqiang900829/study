@@ -10,4 +10,9 @@ public class MyClassLoader2 extends ClassLoader  {
     public Class<?> loadClass(String name) throws ClassNotFoundException {
         return super.loadClass(name);
     }
+
+    public Class<?> defineMyClass( byte[] b, int off, int len)
+    {
+        return super.defineClass(b, off, len);
+    }
 }

@@ -60,7 +60,7 @@ public class CreateClass {
     }
 
     /**
-     * 处理类的基本用法
+     * 处理类的基本用法、获取类的基本信息
      *
      * @throws NotFoundException
      * @throws CannotCompileException
@@ -80,7 +80,7 @@ public class CreateClass {
     }
 
     /**
-     * 测试产生新的方法
+     * 从JVM中获取已有的类、动态添加方法。在使用反射机制实例化、调用方法
      *
      * @throws NotFoundException
      * @throws CannotCompileException
@@ -136,9 +136,9 @@ public class CreateClass {
 
         CtMethod cm = cc.getDeclaredMethod("say", new CtClass[] { CtClass.intType });// 第二个参数为数组
         // 修改方法 在方法前加 在方法的第几行加 在方法后面加
-        cm.insertBefore("System.out.println($1+\" start\");");
+        cm.insertBefore("System.out.println($1+\" start\");");//方法的最前面添加代码。
         cm.insertAt(8, "int b = 3;System.out.println(b);");
-        cm.insertAfter("System.out.println($1+\" end\");");
+        cm.insertAfter("System.out.println($1+\" end\");");//方法的最后面添加代码。
 
         // 通过反射调用新生成的方法
         Class clazz = cc.toClass();
