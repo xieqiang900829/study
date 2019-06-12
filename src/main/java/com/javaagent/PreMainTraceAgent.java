@@ -14,22 +14,31 @@ import java.security.ProtectionDomain;
  */
 public class PreMainTraceAgent {
 
-    public static void premain(String agentArgs, Instrumentation inst) {
+    public static final String injectedClassName = "com.javaagent.Demo";
+    public static final String methodName = "print";
 
+    public static void premain(String agentArgs, Instrumentation inst) {
         System.out.println("PreMainTraceAgent____________agentArgs : " + agentArgs);
         inst.addTransformer(new ClassFileTransformer() {
             @Override
             public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                                     ProtectionDomain protectionDomain, byte[] classfileBuffer)
                     throws IllegalClassFormatException {
-                System.out.println("premain load Class     :" + className);
+                className = className.replace("/", ".");
+                System.out.println(className);
+                if (className.equals(injectedClassName)) {
+                    System.err.println("99999999999999999999999999999999999999999999999999999999999999999999");
+                    try {
+                        CtClass ctclass = ClassPool.getDefault().get(className);// 使用全称,用于取得字节码类<使用javassist>
+                        CtMethod ctmethod = ctclass.getDeclaredMethod(methodName);// 得到这方法实例
+                        ctmethod.insertBefore("System.out.println(11111111111111111111);");
+                        return ctclass.toBytecode();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
                 return classfileBuffer;
             }
         }, true);
-
-        //java  -javaagent:G:\myagent.jar=Hello2 -javaagent:G:\myagent.jar=Hello3 -jar myapp.jar
-        //java -javaagent:study-1.0-SNAPSHOT.jar=Hello1 -javaagent:study-1.0-SNAPSHOT.jar=Hello2 -jar myapp.jar
-        //java  -javaagent:study-1.3-SNAPSHOT.jar=Hello1 -jar  study-1.3-SNAPSHOT.jar
     }
-
 }
