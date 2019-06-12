@@ -159,4 +159,22 @@ public class JavaAgentDemo {
         Method method = c.getMethod("add",int.class,int.class);
         method.invoke(obj,200,300);
     }
+
+    @Test
+    public void f8()throws Exception{
+        ClassPool pool = ClassPool.getDefault();
+        CtClass ctClass = pool.get("com.javaagent.Demo");
+        CtMethod ctMethod = ctClass.getDeclaredMethod("add",new CtClass[]{CtClass.intType,CtClass.intType});
+
+        ctMethod.insertBefore("{System.out.println(\"开始执行\");}");
+        ctMethod.insertAfter("{System.out.println(\"结束执行\");}",false);
+
+        byte[] bytes = ctClass.toBytecode();
+
+        MyClassLoader2 loader = new MyClassLoader2();
+        Class  newClass = loader.defineMyClass(bytes,0,bytes.length);
+        System.err.println(newClass.getName());
+        Method method = newClass.getMethod("add",int.class,int.class);
+        method.invoke(newClass.newInstance(),200,300);
+    }
 }

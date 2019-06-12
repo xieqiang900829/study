@@ -6,7 +6,7 @@
 
     <groupId>com.study</groupId>
     <artifactId>study</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.3-SNAPSHOT</version>
     <build>
         <plugins>
             <plugin>
@@ -26,14 +26,13 @@
                 <version>2.4</version>
                 <configuration>
                     <archive>
-                        <manifest>
-                            <!--是否需要添加 classpath。锁依赖的jar  如果对字节码的处理有应用到了其他的类，需要在manifest中增加路径-->
+                        <!--是否需要添加 classpath。锁依赖的jar  如果对字节码的处理有应用到了其他的类，需要在manifest中增加路径-->
+                       <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>com.proxy.Main</mainClass>
                         </manifest>
-                        <manifestEntries>
+                       <manifestEntries>
                             <Premain-Class>com.javaagent.PreMainTraceAgent</Premain-Class>
-                            <!--<Agent-Class>org.skfiy.typhon.agent.Agent</Agent-Class>-->
                             <Can-Redefine-Classes>true</Can-Redefine-Classes>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
                         </manifestEntries>
@@ -111,5 +110,15 @@
 
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>weidai.releases</id>
+            <url>http://maven.weidai.work/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>weidai.snapshots</id>
+            <url>http://maven.weidai.work/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

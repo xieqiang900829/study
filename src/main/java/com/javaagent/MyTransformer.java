@@ -78,7 +78,7 @@ public class MyTransformer implements ClassFileTransformer {
                 e.printStackTrace();
             }
         }
-        return null;
+        return classfileBuffer;
     }
 
 }
