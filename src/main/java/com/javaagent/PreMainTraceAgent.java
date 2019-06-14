@@ -16,7 +16,7 @@ import java.security.ProtectionDomain;
 public class PreMainTraceAgent {
 
     public static void premain(String agentArgs, Instrumentation inst) {
-        MyTransformer transformer = new MyTransformer();
-        inst.addTransformer(transformer,true);
+        inst.addTransformer(new MyTransformer(),true);
+        inst.addTransformer(new MyTransformer2(),true);
     }
 }

@@ -26,11 +26,6 @@
                 <version>2.4</version>
                 <configuration>
                     <archive>
-                        <!--是否需要添加 classpath。锁依赖的jar  如果对字节码的处理有应用到了其他的类，需要在manifest中增加路径-->
-                      <!-- <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>com.proxy.Main</mainClass>
-                        </manifest>-->
                        <manifestEntries>
                             <Premain-Class>com.javaagent.PreMainTraceAgent</Premain-Class>
                             <Can-Redefine-Classes>true</Can-Redefine-Classes>
