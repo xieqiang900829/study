@@ -14,15 +14,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-        System.out.println("hello_world");
-        Demo demo = new Demo();
-        demo.print();
-
-      /*  LogProxy logProxy = new LogProxy();
+        LogProxy logProxy = new LogProxy();
         System.setProperty("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         HelloWorldInteface helloWorldInteface = (HelloWorldInteface) logProxy.getProxyObject(new HelloWorldImpl());
-        helloWorldInteface.sayHelloWorld();*/
+        helloWorldInteface.sayHelloWorld();
 
        /* //代理没有实现类的接口、或者实现类不在当前进程内
         WriteInterface writeInterface = (WriteInterface) Proxy.newProxyInstance(WriteInterface.class.getClassLoader(), new Class[]{WriteInterface.class}, new InvocationHandler() {
