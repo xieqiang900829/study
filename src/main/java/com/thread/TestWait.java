@@ -1,5 +1,8 @@
 package com.thread;
 
+import java.sql.Driver;
+import java.sql.DriverManager;
+
 /**
  * Created by WD42700 on 2019/2/24.
  */
@@ -7,12 +10,19 @@ public class TestWait {
 
     public static  boolean available = true;
     public static void main(String[] args) throws Exception {
-        Object o = new Object();
+        ClassLoader  loader = Thread.currentThread().getContextClassLoader();
+        System.out.println(loader);//AppClassLoader 系统类加载器
+
+        ClassLoader  loader1 = DriverManager.class.getClassLoader();
+        System.out.println(loader1);//null 引导类加载器
+
+
+        /*Object o = new Object();
 
         new Thread1(o).start();
-        new Thread1(o).start();
+        //new Thread1(o).start();
 
-        Thread.sleep(5000);
+        Thread.sleep(5000);*/
     }
 
     static   class  Thread1  extends Thread{
@@ -26,6 +36,14 @@ public class TestWait {
             synchronized(o){
                 System.out.println(currentThread().getName()+" 开始处理");
                 try {
+                    ClassLoader  loader = Thread.currentThread().getContextClassLoader();
+                    System.out.println(loader);
+
+                    ClassLoader  loader1 = DriverManager.class.getClassLoader();
+                    System.out.println(loader1);
+
+                    loader.loadClass("");
+
                     Thread.sleep(1000);
                     /**
                      * this.wait() 会报异常 IllegalMonitorStateException。

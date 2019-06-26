@@ -28,6 +28,7 @@
                     <archive>
                        <manifestEntries>
                             <Premain-Class>com.javaagent.PreMainTraceAgent</Premain-Class>
+                            <Agent-Class>com.agentmain.AgentMainTraceAgent</Agent-Class>
                             <Can-Redefine-Classes>true</Can-Redefine-Classes>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
                         </manifestEntries>
@@ -116,6 +117,14 @@
             <artifactId>jedis</artifactId>
             <version>1.5.0</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>com.alibaba.otter</groupId>
+            <artifactId>canal.client</artifactId>
+            <version>1.0.12</version>
+        </dependency>
+
 
     </dependencies>
 
