@@ -2,6 +2,7 @@ package com.canal;
 
 import java.net.InetSocketAddress;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.otter.canal.client.CanalConnector;
@@ -20,15 +21,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CanalClient {
 
     public static void main(String args[]) {
-        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(AddressUtils.getHostIp(),
+        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("106.13.2.16",
                 11111), "example", "", "");
         int batchSize = 1000;
         try {
             connector.connect();
             connector.subscribe(".*\\..*");
-            connector.rollback();
+            //connector.rollback();
             while (true) {
-                Message message = connector.getWithoutAck(batchSize); // 获取指定数量的数据
+                /**
+                 * 如果是第一次 fetch，则会从 canal 中保存的最老一条数据开始输出
+                 * 在canal启动前的历史数据。该如何获取？
+                 * 消息是否有顺序性问题。。
+                 * 大部分java应用都是CMS垃圾收集器
+                 * canal如何保存从mysql中收集到的数据
+                 */
+                //Message message = connector.getWithoutAck(batchSize,0L, TimeUnit.SECONDS);
+                Message message = connector.getWithoutAck(batchSize);//不进行自动确认、需要手动确认
                 long batchId = message.getId();
                 int size = message.getEntries().size();
                 if (batchId == -1 || size == 0) {
@@ -39,6 +48,7 @@ public class CanalClient {
                     }
                 } else {
                     printEntry(message.getEntries());
+
                 }
                 connector.ack(batchId); // 提交确认
                 // connector.rollback(batchId); // 处理失败, 回滚数据
@@ -61,30 +71,39 @@ public class CanalClient {
                         e);
             }
             EventType eventType = rowChage.getEventType();
-            System.out.println(String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",
+            System.err.println(String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",
                     entry.getHeader().getLogfileName(), entry.getHeader().getLogfileOffset(),
                     entry.getHeader().getSchemaName(), entry.getHeader().getTableName(),
                     eventType));
 
             for (RowData rowData : rowChage.getRowDatasList()) {
+                rowData.getAfterColumnsList();
+                printColumn(rowData);
                 if (eventType == EventType.DELETE) {
-                    redisDelete(rowData.getBeforeColumnsList());
+                    //redisDelete(rowData.getBeforeColumnsList());
                 } else if (eventType == EventType.INSERT) {
-                    redisInsert(rowData.getAfterColumnsList());
+                    //redisInsert(rowData.getAfterColumnsList());
                 } else {
-                    System.out.println("-------> before");
-                    printColumn(rowData.getBeforeColumnsList());
-                    System.out.println("-------> after");
-                    redisUpdate(rowData.getAfterColumnsList());
+                   // redisUpdate(rowData.getAfterColumnsList());
                 }
             }
         }
     }
 
-    private static void printColumn( List<Column> columns) {
-        for (Column column : columns) {
-            System.out.println(column.getName() + " : " + column.getValue() + "    update=" + column.getUpdated());
+    private static void printColumn(RowData row) {
+        List<Column> beforeList = row.getBeforeColumnsList();
+        List<Column> afterList = row.getAfterColumnsList();
+        System.err.println("\n\n修改前的值");
+        for (Column column : beforeList) {
+            System.err.print(column.getName() + ":" + column.getValue()+"  ");
         }
+        System.err.println("\n修改过的字段");
+        for (Column column : afterList) {
+            if(column.getUpdated() == true){
+                System.err.println("名称 "+column.getName() + ":" + column.getValue() );
+            }
+        }
+
     }
 
     private static void redisInsert( List<Column> columns){
