@@ -32,9 +32,9 @@ public class CanalClient {
                 /**
                  * 如果是第一次 fetch，则会从 canal 中保存的最老一条数据开始输出
                  * 在canal启动前的历史数据。该如何获取？
-                 * 消息是否有顺序性问题。。
+                 * 消息是否有顺序性问题。。？？
                  * 大部分java应用都是CMS垃圾收集器
-                 * canal如何保存从mysql中收集到的数据
+                 * canal如何保存从mysql中收集到的数据？？
                  */
                 //Message message = connector.getWithoutAck(batchSize,0L, TimeUnit.SECONDS);
                 Message message = connector.getWithoutAck(batchSize);//不进行自动确认、需要手动确认
