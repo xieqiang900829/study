@@ -96,7 +96,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
-            <version>2.5.5</version>
+            <version>2.6.12</version>
         </dependency>
 
         <!--在公司是否可以引入、家里的网络不行-->
